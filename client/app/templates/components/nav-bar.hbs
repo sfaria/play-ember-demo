@@ -1,25 +1,32 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Notes</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          {{#if session.isAuthenticated}}
-              <form class="navbar-form navbar-right" {{action 'logout' on='submit'}}>
-                  {{session.data.authenticated.username}}
-                  <button type="submit" class="btn btn-success">Sign out</button>
-              </form>
-          {{else}}
-              <form class="navbar-form navbar-right" {{action 'logout' on='submit'}}>
-                  <div class="form-group">
-                      <input type="text" placeholder="Email" class="form-control">
-                  </div>
-                  <div class="form-group">
-                      <input type="password" placeholder="Password" class="form-control">
-                  </div>
-                  <button type="submit" class="btn btn-success">Sign in</button>
-              </form>
-          {{/if}}
+            {{#unless hasError}}
+                {{#if session.isAuthenticated}}
+                    <form class="navbar-form navbar-right" {{action 'logout' on='submit'}}>
+                        <label>{{session.data.authenticated.username}} </label>
+                        <button type="submit" class="btn btn-success">Sign out</button>
+                    </form>
+                {{else}}
+                    <form class="navbar-form navbar-right" {{action 'login' on='submit'}}>
+                        <div class="form-group">
+                            {{input value=username type="text" placeholder="Email" class="form-control"}}
+                        </div>
+                        <div class="form-group">
+                            {{input value=password type="password" placeholder="Password" class="form-control"}}
+                        </div>
+                        <button type="submit" class="btn btn-success">Sign in</button>
+                    </form>
+                {{/if}}
+            {{else}}
+                <div class="alert alert-danger fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&amp;times;</a>
+                    <strong>Error!</strong> {{error}}
+                </div>
+            {{/unless}}
         </div>
     </div>
 </nav>
