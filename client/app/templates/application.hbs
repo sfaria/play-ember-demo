@@ -1,4 +1,25 @@
 {{nav-bar}}
-<div class="container">
+
+{{#if errorService.hasError}}
+    <div style="opacity: 0.9; position: absolute; padding-top: 20px; left: 0; right: 0; margin-left: auto; margin-right:auto; width: 25%">
+        <div class="alert alert-danger fade in" style="text-align: center">
+            <a {{action "clearError"}} href="#" class="close" data-dismiss="alert" aria-label="close">
+                <i class="fa fa-times" aria-hidden="true" style="padding-left: 10px"></i>
+            </a>
+            <strong>Error!: </strong>{{errorService.error}}
+        </div>
+    </div>
+{{/if}}
+
+<div class="container" style="z-index: -1;">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tempor imperdiet sapien sit amet euismod. Morbi viverra eget nisl semper cursus. Aenean luctus egestas sodales. Sed hendrerit faucibus nisl nec sagittis. Cras ac nisl sed neque congue viverra. Proin semper magna quis nisi dictum consectetur. Sed feugiat lectus non dolor imperdiet, nec facilisis neque posuere. Ut pellentesque feugiat lectus et convallis. Nam eu eros ac nulla auctor rutrum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec fringilla quam vitae mi efficitur mattis.
+
+    In hac habitasse platea dictumst. Morbi congue, sapien vitae fermentum efficitur, nunc sapien accumsan erat, quis bibendum enim sem eu libero. Curabitur ut massa elit. Praesent non vehicula arcu. Donec fermentum augue lacus, non efficitur orci gravida vel. Nulla facilisi. Mauris ullamcorper sem risus, nec feugiat dui consectetur ut. Donec leo quam, suscipit in neque ut, egestas tincidunt nulla. Nunc bibendum leo at erat tristique, a luctus est tincidunt.
+
+    In bibendum lacinia lacus, quis consequat ipsum tristique nec. Nulla bibendum tincidunt tempus. Quisque sagittis orci facilisis risus mollis, eu consequat lectus facilisis. Quisque lorem nisi, ullamcorper non efficitur nec, placerat non tortor. Vivamus aliquam massa quis congue laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam dictum egestas justo. Nulla nec libero vel nunc pretium rhoncus vel in velit. Morbi bibendum laoreet sapien eu malesuada.
+
+    Aenean id nisl urna. Morbi scelerisque imperdiet dignissim. Quisque nec nulla quis lectus varius facilisis nec nec felis. Etiam commodo aliquam mauris at tincidunt. Sed bibendum leo a ante pretium, vitae eleifend odio sollicitudin. Fusce eu consequat felis. Fusce ut ipsum semper, bibendum quam ac, molestie dui. Sed finibus justo non ante vulputate rutrum. Phasellus ullamcorper lacus sed augue mattis fringilla. Sed vehicula et ante quis vestibulum. Maecenas sed eros id elit facilisis aliquam sed sed nisi. Donec eget placerat mi, id venenatis sem.
+
+    Aliquam ut felis eget est pellentesque maximus ac ac sapien. In dapibus orci in elit venenatis, mollis consectetur nibh commodo. Aenean iaculis purus nec scelerisque malesuada. Quisque nec risus nec dui mattis mollis. Nam fermentum nisi condimentum nisi mattis mollis. Sed varius erat eget lacus fringilla, a finibus enim porta. Curabitur malesuada nisi non lobortis cursus. Proin velit orci, mollis quis nisi sed, tempor porta dolor. Morbi odio sem, interdum vel porta sed, accumsan eu dui. Etiam quis auctor nunc. Sed finibus, magna nec maximus semper, felis lectus mollis enim, sit amet pharetra ante elit vitae dui.
   {{outlet}}
 </div>

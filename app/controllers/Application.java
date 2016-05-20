@@ -24,7 +24,8 @@ public final class Application extends Controller {
             String username = request.findPath("username").textValue().toLowerCase();
             String password = request.findPath("password").textValue();
             if (username.equals("scott.faria@gmail.com") && password.equals("test")) {
-                session().put("connected", "true");
+                session().clear();
+                session().put("user", username);
                 return ok(username);
             }
         }
@@ -32,16 +33,28 @@ public final class Application extends Controller {
     }
 
     public Result validate() {
-        if (session().isEmpty()) {
-            return badRequest("No session");
-        } else {
-            return ok();
+        JsonNode request = request().body().asJson();
+        if (request != null) {
+            String username = request.findPath("username").textValue().toLowerCase();
+            if (session().isEmpty() || !session().get("user").equals(username)) {
+                return badRequest("No session");
+            } else {
+                return ok(session().get("user"));
+            }
         }
+        return badRequest("Failed to validate session.");
     }
 
     public Result logout() {
-        session().clear();
-        return ok();
+        JsonNode request = request().body().asJson();
+        if (request != null) {
+            String username = request.findPath("username").textValue().toLowerCase();
+            if (session().get("user").equals(username)) {
+                session().clear();
+                return ok();
+            }
+        }
+        return badRequest("Failed to logout user.");
     }
 
 }
