@@ -7,11 +7,7 @@ export default Base.extend({
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax({
                 type: 'POST',
-                url: '/validate',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    username: data.username
-                })
+                url: '/validate'
             }).done(() => {
                 resolve();
             }).fail(error => {
@@ -42,11 +38,7 @@ export default Base.extend({
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax({
                 type: 'POST',
-                url: '/logout',
-                contentType: 'application/json',
-                data: JSON.stringify({
-                    username: data.username
-                })
+                url: '/logout'
             }).done(() => {
                 resolve();
             }).fail(error => {

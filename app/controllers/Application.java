@@ -3,6 +3,7 @@ package controllers;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.mvc.Controller;
 import play.mvc.Result;
+import services.UserManagementService;
 
 import javax.inject.Inject;
 
@@ -11,50 +12,46 @@ import javax.inject.Inject;
  */
 public final class Application extends Controller {
 
+    // -------------------- Private Variables --------------------
+
+    private final UserManagementService userManagementService;
+
     // -------------------- Constructors --------------------
 
     @Inject
-    public Application() {}
+    public Application(UserManagementService userManagementService) {
+        this.userManagementService = userManagementService;
+    }
 
     // -------------------- Controller Methods --------------------
 
     public Result login() {
         JsonNode request = request().body().asJson();
         if (request != null) {
-            String username = request.findPath("username").textValue().toLowerCase();
+            String username = request.findPath("username").textValue();
             String password = request.findPath("password").textValue();
-            if (username.equals("scott.faria@gmail.com") && password.equals("test")) {
+            if (userManagementService.login(username, password)) {
                 session().clear();
                 session().put("user", username);
-                return ok(username);
+                return ok();
             }
         }
         return badRequest("Failed to login.");
     }
 
     public Result validate() {
-        JsonNode request = request().body().asJson();
-        if (request != null) {
-            String username = request.findPath("username").textValue().toLowerCase();
-            if (session().isEmpty() || !session().get("user").equals(username)) {
-                return badRequest("No session");
-            } else {
-                return ok(session().get("user"));
-            }
+        String username = session().get("user");
+        if (userManagementService.isLoggedIn(username)) {
+            return ok();
         }
         return badRequest("Failed to validate session.");
     }
 
     public Result logout() {
-        JsonNode request = request().body().asJson();
-        if (request != null) {
-            String username = request.findPath("username").textValue().toLowerCase();
-            if (session().get("user").equals(username)) {
-                session().clear();
-                return ok();
-            }
-        }
-        return badRequest("Failed to logout user.");
+        String username = session().get("user");
+        userManagementService.logout(username);
+        session().clear();
+        return ok();
     }
 
 }
