@@ -3,7 +3,7 @@ import Base from 'ember-simple-auth/authenticators/base';
 
 export default Base.extend({
 
-    restore(data) {
+    restore() {
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax({
                 type: 'POST',
@@ -34,7 +34,7 @@ export default Base.extend({
         });
     },
 
-    invalidate(data) {
+    invalidate() {
         return new Ember.RSVP.Promise((resolve, reject) => {
             Ember.$.ajax({
                 type: 'POST',
