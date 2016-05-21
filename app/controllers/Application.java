@@ -33,7 +33,7 @@ public final class Application extends Controller {
             if (userManagementService.login(username, password)) {
                 session().clear();
                 session().put("user", username);
-                return ok();
+                return noContent();
             }
         }
         return badRequest("Failed to login.");
@@ -42,7 +42,7 @@ public final class Application extends Controller {
     public Result validate() {
         String username = session().get("user");
         if (userManagementService.isLoggedIn(username)) {
-            return ok();
+            return noContent();
         }
         return badRequest("Failed to validate session.");
     }
@@ -51,7 +51,7 @@ public final class Application extends Controller {
         String username = session().get("user");
         userManagementService.logout(username);
         session().clear();
-        return ok();
+        return noContent();
     }
 
 }

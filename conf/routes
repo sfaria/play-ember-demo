@@ -12,3 +12,7 @@ POST    /login                      controllers.Application.login
 POST    /logout                     controllers.Application.logout
 POST    /validate                   controllers.Application.validate
 
+GET     /notes                      controllers.Notes.getNotes
+POST    /notes                      controllers.Notes.addNote
+DELETE  /notes/:id                  controllers.Notes.deleteNote(id)
+
