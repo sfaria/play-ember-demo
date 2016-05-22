@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const {get, set} = Ember;
+const { set } = Ember;
 
 export default Ember.Service.extend({
 

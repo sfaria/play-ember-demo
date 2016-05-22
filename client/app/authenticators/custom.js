@@ -13,7 +13,7 @@ export default Base.extend({
             }).fail(error => {
                 reject(error);
             });
-        })
+        });
     },
 
     authenticate(username, password) {
