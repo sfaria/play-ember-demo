@@ -1,7 +1,34 @@
-<ul>
-    {{#each note as |notes|}}
-        {{sticky-note note=note}}
-    {{else}}
-        No notes found! You should add one. :)
-    {{/each}}
-</ul>
+<div>
+    <button {{action 'startAddNote' on='click'}} class="btn btn-success">
+        <i class="fa fa-plus" aria-hidden="true"></i> New Note
+    </button>
+    <div class="container" style="padding-top: 20px;">
+        <ul>
+            {{#each note as |notes|}}
+                {{sticky-note note=note}}
+            {{else}}
+                No notes found! You should add one. :)
+            {{/each}}
+        </ul>
+    </div>
+</div>
+
+{{#if showingModal}}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button {{action 'cancelAddNote'}} type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button {{action 'cancelAddNote'}} type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button {{action 'submitNote'}} type="button" class="btn btn-primary">Add Note</button>
+            </div>
+        </div>
+    </div>
+{{/if}}

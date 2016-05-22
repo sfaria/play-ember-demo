@@ -17,10 +17,10 @@ export default Ember.Service.extend({
     login(username, password) {
         if (!Ember.isEmpty(username) && !Ember.isEmpty(password)) {
             const session = get(this, 'session');
-            set(this, 'user', username);
             session.authenticate(authenticator, username, password).then(() => {
                 set(this, 'user', username);
             }).catch(error => {
+                set(this, 'user', undefined);
                 get(this, 'errorService').setError(error);
             });
         } else {
