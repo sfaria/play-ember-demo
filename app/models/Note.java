@@ -29,7 +29,10 @@ public class Note implements Comparable<Note> {
         this(title, body, new Date());
     }
 
-    public Note() {}
+    public Note() {
+        this.id = UUID.create();
+        this.createdOn = new Date();
+    }
 
     // -------------------- Public Methods --------------------
 

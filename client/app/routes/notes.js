@@ -22,6 +22,12 @@ export default Ember.Route.extend({
 
     setupController(controller, model) {
         controller.set('notes', model);
+    },
+
+    actions: {
+        refreshModel() {
+            this.refresh();
+        }
     }
 
 });
