@@ -17,6 +17,7 @@ import static java.util.concurrent.CompletableFuture.*;
 /**
  * @author Scott Faria <scott.faria@gmail.com>
  */
+@SuppressWarnings("unused")
 public class Notes extends Controller {
 
     // -------------------- Private Variables --------------------

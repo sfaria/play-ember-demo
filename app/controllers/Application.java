@@ -10,6 +10,7 @@ import javax.inject.Inject;
 /**
  * @author Scott Faria
  */
+@SuppressWarnings("unused")
 public final class Application extends Controller {
 
     // -------------------- Private Variables --------------------
@@ -25,7 +26,7 @@ public final class Application extends Controller {
 
     // -------------------- Controller Methods --------------------
 
-    public Result login() {
+    public final Result login() {
         JsonNode request = request().body().asJson();
         if (request != null) {
             String username = request.findPath("username").textValue();
@@ -39,7 +40,7 @@ public final class Application extends Controller {
         return badRequest("Failed to login.");
     }
 
-    public Result validate() {
+    public final Result validate() {
         String username = session().get("user");
         if (userManagementService.isLoggedIn(username)) {
             return noContent();
@@ -47,7 +48,7 @@ public final class Application extends Controller {
         return badRequest("Failed to validate session.");
     }
 
-    public Result logout() {
+    public final Result logout() {
         String username = session().get("user");
         userManagementService.logout(username);
         session().clear();

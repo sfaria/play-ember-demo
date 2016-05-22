@@ -19,7 +19,7 @@ public final class EmberAssets extends Controller {
 
     // -------------------- Controller Methods --------------------
 
-    public Result at(String file) {
+    public final Result at(String file) {
         File content = new File("client/dist/" + file);
         if (content.exists()) {
             return Results.ok(content, true);
