@@ -1,3 +1,7 @@
-<div>
-    <h1>There should be some notes here</h1>
-</div>
+<ul>
+    {{#each note as |notes|}}
+        {{sticky-note note=note}}
+    {{else}}
+        No notes found! You should add one. :)
+    {{/each}}
+</ul>

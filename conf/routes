@@ -3,16 +3,16 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.EmberAssets.at(file="index.html")
+GET     /                    controllers.EmberAssets.at(file="index.html")
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.EmberAssets.at(file)
+GET     /assets/*file        controllers.EmberAssets.at(file)
 
-POST    /login                      controllers.Application.login
-POST    /logout                     controllers.Application.logout
-POST    /validate                   controllers.Application.validate
+POST    /login               controllers.Application.login
+POST    /logout              controllers.Application.logout
+POST    /validate            controllers.Application.validate
 
-GET     /notes                      controllers.Notes.getNotes
-POST    /notes                      controllers.Notes.addNote
-DELETE  /notes/:id                  controllers.Notes.deleteNote(id)
+GET     /notes               controllers.Notes.getNotes()
+POST    /notes               controllers.Notes.addNote()
+DELETE  /notes/:id           controllers.Notes.deleteNote(id)
 
