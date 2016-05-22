@@ -5,7 +5,7 @@
     <div class="container" style="padding-top: 20px;">
         <ul>
             {{#each notes as |note|}}
-                {{sticky-note note=note}}
+                {{sticky-note note=note deleteAction='deleteNote'}}
             {{else}}
                 No notes found! You should add one. :)
             {{/each}}

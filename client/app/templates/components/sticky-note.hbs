@@ -1,6 +1,13 @@
 <li>
-    <div>
-        <h2>{{note.title}}</h2>
-        <p>{{note.body}}</p>
+    <div class="note-body">
+        <div class="header-container">
+           <div>
+               <h2 class="note-header-text">{{note.title}}</h2>
+           </div>
+            <div>
+                <i style="cursor:pointer" {{action 'sendDelete' note on='click'}} class="fa fa-trash" aria-hidden="true"></i>
+            </div>
+        </div>
+        <p class="note-text">{{note.body}}</p>
     </div>
 </li>

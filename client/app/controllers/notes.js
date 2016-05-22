@@ -53,6 +53,19 @@ export default Ember.Controller.extend({
                 set(this, 'creatingNote', false);
                 get(this, 'errorService').setError('Empty notes and/or titles are not allowed!');
             }
+        },
+
+        deleteNote(note) {
+            if (!Ember.isEmpty(note)) {
+                Ember.$.ajax({
+                    type: 'DELETE',
+                    url: `/notes/${note.id}`
+                }).done(() => {
+                    this.send('refreshModel');
+                }).fail(error => {
+                    get(this, 'errorService').setError(error);
+                });
+            }
         }
     }
 });
