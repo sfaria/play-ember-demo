@@ -14,6 +14,12 @@ export default Ember.Service.extend({
         return !Ember.isEmpty(username);
     }.property('user'),
 
+    restoreSession(username) {
+        if (!Ember.isEmpty(username)) {
+            set(this, 'user', username);
+        }    
+    }, 
+    
     login(username, password, afterSuccess) {
         if (!Ember.isEmpty(username) && !Ember.isEmpty(password)) {
             const session = get(this, 'session');

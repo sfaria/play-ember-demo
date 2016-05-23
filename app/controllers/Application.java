@@ -43,7 +43,7 @@ public final class Application extends Controller {
     public final Result validate() {
         String username = session().get("user");
         if (userManagementService.isLoggedIn(username)) {
-            return noContent();
+            return ok(username);
         }
         return badRequest("Failed to validate session.");
     }
