@@ -15,10 +15,11 @@ export default Ember.Component.extend({
             const username = get(this, 'username');
             const password = get(this, 'password');
             if (!Ember.isEmpty(username) && !Ember.isEmpty(password)) {
-                get(this, 'activeSession').login(username, password);
-                set(this, 'username', undefined);
-                set(this, 'password', undefined);
-                this.sendAction('afterLogin');
+                get(this, 'activeSession').login(username, password, () => {
+                    set(this, 'username', undefined);
+                    set(this, 'password', undefined);
+                    this.sendAction('afterLogin');
+                });
             } else {
                 get(this, 'errorService').setError('Your username and/or password cannot be empty!');
             }
